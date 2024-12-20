@@ -1,4 +1,6 @@
 
+
+//Esta entidad me va a saervir para el ver como es el mapeo de mis notificaciones
 class PushMessage {
 
   final String messageId;

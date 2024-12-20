@@ -7,9 +7,9 @@ class NotificationsState extends Equatable {
   final AuthorizationStatus status;//con esto sabemos el estado de nuestras notificaciones si esq esta utilizado, negado etc..
   //TODO: crea mi modelo de notificaciones
   //con esta variable mantenemos un listado de nuestras notificaiones push
-  final List<dynamic> notifications;//de monento va el tipo de dato va a ser dinamico
+  //final List<dynamic> notifications;//de monento va el tipo de dato va a ser dinamico
   
-  // final List<PushMessage> notifications;
+  final List<PushMessage> notifications;//esta va  a ser una lista delpushMessage que creamos en la carpeta domain/entities
 
   const NotificationsState({
     this.status = AuthorizationStatus.notDetermined, // al estado lo inicializamos como no determinado porque a pesar de que ya lo autorice no sabemos que va  a ser

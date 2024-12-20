@@ -8,19 +8,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:push_app/config/router/app_router.dart';
 
 import 'package:push_app/config/theme/app_theme.dart';
-//import 'package:push_app/presentation/blocs/notifications/notifications_bloc.dart';
+import 'package:push_app/presentation/blocs/notifications/notifications_bloc.dart';
+
 
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-  ///FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
-  // await NotificationsBloc.initializeFCM();
+  await NotificationsBloc.initializeFCM();
   
   runApp(
     MultiBlocProvider(
       providers: [
-        // BlocProvider(create: (_) => NotificationsBloc())
+        BlocProvider(create: (_) => NotificationsBloc())
       ], 
       child: const MainApp())
     
@@ -73,9 +74,9 @@ class _HandleNotificationInteractionsState extends State<HandleNotificationInter
   }
   
   void _handleMessage(RemoteMessage message) {
-
-    // context.read<NotificationsBloc>()
-      // .handleRemoteMessage(message);
+    //instanciamos nuestro bloc
+    context.read<NotificationsBloc>()
+      .handleRemoteMessage(message);
 
     final messageId = message.messageId?.replaceAll(':', '').replaceAll('%', '');
     appRouter.push('/push-details/$messageId');
